@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
@@ -56,5 +57,17 @@ public class BookController {
         return "redirect:/book/allBook";
     }
 
+    // 常规风格的删除
+//    @RequestMapping("/delete")
+//    public String deleteBook(int id){
+//        bookService.deleteBookById(id);
+//        return "redirect:/book/allBook";
+//    }
+    // Restful风格的删除
+    @RequestMapping("/delete/{bookId}")
+    public String deleteBookResultful(@PathVariable("bookId") int id){
+        bookService.deleteBookById(id);
+        return "redirect:/book/allBook";
 
+    }
 }
