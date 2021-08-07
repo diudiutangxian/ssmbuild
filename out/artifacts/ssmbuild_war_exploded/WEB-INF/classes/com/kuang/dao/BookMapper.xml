@@ -34,4 +34,9 @@
         SELECT * from ssmbuild.books
     </select>
 
+    <!--通过书名查询一本书-->
+    <select id="queryBookName" resultType="Books">
+        SELECT * from ssmbuild.books where bookName like CONCAT(CONCAT('%',#{bookName},'%'))
+    </select>
+
 </mapper>

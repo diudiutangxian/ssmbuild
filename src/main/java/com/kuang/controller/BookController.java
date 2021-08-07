@@ -8,7 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import java.util.List;
 
 @Controller
@@ -68,6 +67,13 @@ public class BookController {
     public String deleteBookResultful(@PathVariable("bookId") int id){
         bookService.deleteBookById(id);
         return "redirect:/book/allBook";
+    }
 
+    @RequestMapping("/queryBook")
+    public String quryBook(String queryBookName, Model model){
+//        Books books = bookService.queryBookName(queryBookName);
+        List<Books> list = bookService.queryBookName(queryBookName);;
+        model.addAttribute("list", list);
+        return "allBook";
     }
 }
